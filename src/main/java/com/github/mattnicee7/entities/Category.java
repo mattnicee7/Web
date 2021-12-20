@@ -1,5 +1,6 @@
 package com.github.mattnicee7.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,8 @@ public class Category implements Serializable {
     @Setter
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String name) {
@@ -45,5 +47,4 @@ public class Category implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }
