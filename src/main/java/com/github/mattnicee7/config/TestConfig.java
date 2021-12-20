@@ -1,14 +1,8 @@
 package com.github.mattnicee7.config;
 
-import com.github.mattnicee7.entities.Category;
-import com.github.mattnicee7.entities.Order;
-import com.github.mattnicee7.entities.Product;
-import com.github.mattnicee7.entities.User;
+import com.github.mattnicee7.entities.*;
 import com.github.mattnicee7.entities.enums.OrderStatus;
-import com.github.mattnicee7.repositories.CategoryRepository;
-import com.github.mattnicee7.repositories.OrderRepository;
-import com.github.mattnicee7.repositories.ProductRepository;
-import com.github.mattnicee7.repositories.UserRepository;
+import com.github.mattnicee7.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -70,6 +67,13 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 2);
+        OrderItem orderItem2 = new OrderItem(order1, product3, 1);
+        OrderItem orderItem3 = new OrderItem(order2, product3, 2);
+        OrderItem orderItem4 = new OrderItem(order3, product5, 2);
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
     }
 
 }

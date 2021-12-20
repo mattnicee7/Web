@@ -1,8 +1,8 @@
 package com.github.mattnicee7.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.mattnicee7.entities.enums.OrderStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +10,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @NoArgsConstructor
 @Entity
@@ -36,6 +38,9 @@ public class Order implements Serializable {
     @Setter
     private User client;
 
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
@@ -50,6 +55,10 @@ public class Order implements Serializable {
     public void setOrderStatus(OrderStatus orderStatus) {
         if (orderStatus != null)
             this.orderStatus = orderStatus.getCode();
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override
