@@ -1,7 +1,6 @@
 package com.github.mattnicee7.services;
 
 import com.github.mattnicee7.entities.Order;
-import com.github.mattnicee7.entities.User;
 import com.github.mattnicee7.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

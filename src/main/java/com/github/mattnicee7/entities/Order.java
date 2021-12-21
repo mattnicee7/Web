@@ -1,7 +1,6 @@
 package com.github.mattnicee7.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.mattnicee7.entities.enums.OrderStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

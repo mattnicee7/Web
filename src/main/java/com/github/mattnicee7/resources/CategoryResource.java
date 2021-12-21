@@ -31,4 +31,5 @@ public class CategoryResource {
 
         return ResponseEntity.ok().body(category);
     }
+
 }

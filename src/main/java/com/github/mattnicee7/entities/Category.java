@@ -1,7 +1,6 @@
 package com.github.mattnicee7.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,4 +46,5 @@ public class Category implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
