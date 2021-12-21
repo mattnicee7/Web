@@ -2,8 +2,11 @@ package com.github.mattnicee7.services;
 
 import com.github.mattnicee7.entities.User;
 import com.github.mattnicee7.repositories.UserRepository;
+import com.github.mattnicee7.resources.exceptions.DatabaseException;
 import com.github.mattnicee7.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,7 +33,13 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException exception) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException exception) {
+            throw new DatabaseException(exception.getMessage());
+        }
     }
 
     public User update(Long id, User user) {
