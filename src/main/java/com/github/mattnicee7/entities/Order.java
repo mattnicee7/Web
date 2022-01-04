@@ -31,13 +31,14 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
+    // muitos pedidos pra um usuario
     @ManyToOne
     @JoinColumn(name = "client_id")
     @Getter
     @Setter
     private User client;
 
-    @OneToMany(mappedBy = "id.order")
+    @OneToMany(mappedBy = "id.order") // um pedido tem muitos orderItem
     private Set<OrderItem> items = new HashSet<>();
 
     @Getter

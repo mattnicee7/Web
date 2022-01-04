@@ -17,7 +17,7 @@ import java.util.Objects;
 public class OrderItemPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id") // um orderitem tem um pedido (ManyToOne)
     private Order order;
 
     @ManyToOne
